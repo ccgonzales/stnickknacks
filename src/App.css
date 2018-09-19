@@ -2,12 +2,87 @@ body {
   background-color: #F2E8CE;
 }
 
-.App {
-  text-align: center;
+.menubar {
+  display: flex;
+  background-color: #fdfcf5;
+  border-bottom: 1px #ebebeb solid;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  position: sticky;
+  width: calc(100vw - 4rem);
+  top: 0;
+  box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, .2);
+}
+.menubar__title {
+  font-family: 'Mystery Quest';
+  font-size: 2rem;
+  letter-spacing: .2rem;
 }
 
-path {
-  fill: transparent;
+.menubar__shoplink {
+  padding: .5rem;
+  font-family: Helvetica, Roboto, sans-serif;
+  font-weight: 700;
+  background-color: #f45800;
+  color: white;
+  border-radius: 3px;
+  box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, .2);
+  transition: background-color .5s ease-out;
+  text-decoration: none;
+}
+.menubar__shoplink:hover {
+  background-color: rgb(237, 134, 88);
+  animation: shop_button-bounce 1s 1;
+  transform: scale(1.25);
+  box-shadow: none;
+}
+
+@keyframes shop_button-bounce {
+  0% { transform: scale(1.25)}
+  75% { transform: scale(1.125)}
+  100% { transform: scale(1.25)}
+}
+
+.content {
+  margin: 2rem;
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  grid-template-rows: 1fr 1fr;
+
+}
+
+.content__container {
+  background-color: #ebebeb;
+  color: white;
+  border-radius: 3px;
+  padding: 1rem;
+  box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, .2);
+}
+
+.content__container--tall {
+  grid-row: 1 / 3;
+  background-color: #033360;
+  box-shadow: 8px 8px 17px 0px hsla(0, 0%, 0%, .75);
+  z-index: 2;
+}
+
+.content__container--alpha {
+  background-color: #067924;
+  border-top-left-radius: 0;
+}
+
+.content__container--bravo {
+  background-color: #9F2F00;
+  border-top-left-radius: 0;
+}
+
+.content__text {
+  font-size: 1.5rem;
+}
+
+.App {
+  text-align: center;
 }
 
 .logo-text {
@@ -18,11 +93,15 @@ path {
 }
 
 .hero {
+  
+}
 
+.hero__textpath {
+  fill: transparent;
 }
 
 .hero__sitetitle {
-
+  
 }
 
 .hero__sitesubtitle {
