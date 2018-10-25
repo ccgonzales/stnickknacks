@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import ShopButton from './ShopButton';
 import Listings from './Listings';
 import Sections from './Sections';
+import FeaturedListings from './FeaturedList';
 import logo from './logo.svg';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStore } from '@fortawesome/free-solid-svg-icons';
+import { faStore, faSmile, faHeart, faChild } from '@fortawesome/free-solid-svg-icons';
 
 class App extends React.Component {
   constructor(props) {
@@ -34,7 +36,16 @@ class App extends React.Component {
       console.warn(error)
       return null
     })
+
+    //window.addEventListener('scroll', this.handleScroll)
   }
+
+  handleScroll() {
+    let breakpoint = document.querySelector('.hero')
+    console.log(breakpoint.getBoundingClientRect())
+  }
+
+  
 
   render() {
     return (
@@ -42,40 +53,41 @@ class App extends React.Component {
 
 <div className="menubar">
   <h1 className="menubar__title">St. Nick Knacks</h1>
-  <a href="https://stnickknacks.etsy.com?ref=ws" className="menubar__shoplink">
-  <FontAwesomeIcon icon={faStore} /> Etsy Shop</a>
+  <ShopButton />
 </div>
 
         <div className="hero">
-          <svg viewBox="0 0 500 95">
-            <path className="hero__textpath" id="curve" d="M73.2,148.6c4-6.1,65.5-96.8,178.6-95.6c111.3,1.2,170.8,90.3,175.1,97" />
-            <text width="">
-              <textPath xlinkHref="#curve" startOffset="50%" textAnchor="middle" className="logo-text">
-                St. Nick Knacks
-              </textPath>
-            </text>
-          </svg>
-          <p className="hero__sitesubtitle">Handcrafted Primitive Gifts</p>
+        <FeaturedListings />
+          <div className="hero__branding">
+            <h1 className="hero__title">St. Nick Knacks</h1>
+            <p className="hero__subtitle">Handcrafted Primitive Gifts</p>
+            <ShopButton />
+          </div>
         </div>
 
         <main className="content">
-          <section className="content__container content__container--tall">
-            <h2>hiya!</h2>
-            <p className="content__text">we are a small home business, with 35 years of crafting and creating. 
-            <br />Sondra, the crafting diva, does all 
-the creative work. tom does all the wood cutting. christopher handles everything else.
-we are all managed by our boss with the tale, Maddie. He inspects every box and must know where we are at all times!</p>
+          <section className="content__container content__container--charlie">
+            <h2 className="content__header content__header--welcome"><FontAwesomeIcon icon={faChild} /> hiya!</h2>
+            <p className="content__text">We are a small home business, with 35 years of crafting and creating!</p>
+            <p className="content__text">We hand make primitive gifts covering a variety of categories such as: 
+            <br/>ornaments, figurines, wall decor,
+            and other home decor goodies to fit your rustic or country style!</p>
           </section>
-          <section id="handcrafted" className="content__container content__container--alpha">
-          <h2>handmade with love</h2>
+
+          <section id="handcrafted" className="content__container">
+          <h2 className="content__header content__header--ouritems"><FontAwesomeIcon icon={faHeart} /> handmade with love</h2>
           <p className="content__text">
-          All of our items are handmade in the USA! We work with a variety of materials, such as: paint, wood, floral or metal. 
-          Our items tend to be primitive, rustic, or country style decor.
-          </p>
+          All of our items are handmade in the USA! </p>
+          <p className="content__text">We work with a variety of materials, such as: paint, wood, floral or metal. </p>
+          <p className="content__text">Our items tend to be primitive, rustic, or country style decor.</p>          
           </section>
+
           <section id="" className="content__container content__container--bravo">
-          <h2>put something here</h2>
-          <p className="content__text">something something, danger zone.</p>
+          <h2 className="content__header content__header--aboutus"><FontAwesomeIcon icon={faSmile} /> meet the st. nick knackers</h2>
+          <p className="content__text">Sondra, the crafting diva, does all the creative work.</p>
+          <p className="content__text">Maddie, our boss with the tale, inspects every box and must know where we are at all times!</p>
+          <p className="content__text">Christopher manages the pixels and paperwork.</p>
+          <p className="content__text">Tom works menial tasks to pay for his cruising habit!</p>
           </section>        
         </main>
 
@@ -90,7 +102,11 @@ we are all managed by our boss with the tale, Maddie. He inspects every box and 
 
       }
       <footer className="footer">
-        <p className="footer__text">&copy; 2018 St. Nick Knacks </p>
+        <p className="footer__text">&copy; {
+          (function(date) {
+            return date.getFullYear();
+          })(new Date())
+        } St. Nick Knacks </p>
         <p className="footer__text">St. Nick Knacks makes handcrafted primitive gives to match your primitive, country, or rustic decor.
           Our <a href="https://stnickknacks.etsy.com">etsy store</a> has details on product dimensions and styles.
         </p>

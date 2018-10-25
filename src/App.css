@@ -3,8 +3,8 @@ body {
 }
 
 .menubar {
-  display: flex;
-  background-color: #fdfcf5;
+  display: none;
+  background-color: #f8f6e8;
   border-bottom: 1px #ebebeb solid;
   align-items: center;
   justify-content: space-between;
@@ -13,6 +13,7 @@ body {
   width: calc(100vw - 4rem);
   top: 0;
   box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, .2);
+  z-index: 999;
 }
 .menubar__title {
   font-family: 'Mystery Quest';
@@ -20,7 +21,11 @@ body {
   letter-spacing: .2rem;
 }
 
-.menubar__shoplink {
+.shopButton__container {
+  text-align: center;
+}
+
+.shopButton__link {
   padding: .5rem;
   font-family: Helvetica, Roboto, sans-serif;
   font-weight: 700;
@@ -31,110 +36,114 @@ body {
   transition: background-color .5s ease-out;
   text-decoration: none;
 }
-.menubar__shoplink:hover {
+
+.shopButton__link:hover {
   background-color: rgb(237, 134, 88);
-  animation: shop_button-bounce 1s 1;
+  animation: shop_button-bounce .8s 1;
   transform: scale(1.25);
   box-shadow: none;
 }
 
 @keyframes shop_button-bounce {
-  0% { transform: scale(1.25)}
-  75% { transform: scale(1.125)}
+  0% { transform: scale(1)}
+  50% { transform: scale(1.125)}
+  90% { transform: scale(1.05)}
   100% { transform: scale(1.25)}
 }
 
 .content {
   margin: 2rem;
   display: grid;
-  grid-template-columns: 2fr 2fr;
-  grid-template-rows: 1fr 1fr;
-
+  gap: 5vw;
+  grid-gap: 5vw;
 }
 
 .content__container {
-  background-color: #ebebeb;
+  background-color: #fdfade;
+  color: rgb(34, 34, 34);
+  border-radius: 5px 5px 0 0;
+  box-shadow: 0px 5px 5px 0px hsla(0, 0%, 0%, .1);
+}
+
+.content__header {
   color: white;
-  border-radius: 3px;
   padding: 1rem;
-  box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, .2);
+  margin: 0;
+  border-radius: 5px 5px 0 0;
+
 }
 
-.content__container--tall {
-  grid-row: 1 / 3;
-  background-color: #033360;
-  box-shadow: 8px 8px 17px 0px hsla(0, 0%, 0%, .75);
-}
-
-.content__container--alpha {
+.content__header--welcome {
   background-color: #067924;
-  border-top-left-radius: 0;
 }
 
-.content__container--bravo {
+.content__header--ouritems {
   background-color: #9F2F00;
-  border-top-left-radius: 0;
+}
+
+.content__header--aboutus {
+  background-color: #033360;
 }
 
 .content__text {
   font-size: 1.5rem;
-}
-
-.App {
-  text-align: center;
-}
-
-.logo-text {
-  font-family: 'Mystery Quest', cursive;
-  font-size: 2.5rem;
-  color: #455059;
-  font-weight: normal;
+  font-family: 'Quicksand', sans-serif;
+  padding: 0 1rem;
 }
 
 .hero {
-  
+  /* height: 100vh; */
+
 }
 
-.hero__textpath {
-  fill: transparent;
+.hero__branding {
+  background-color: rgba(255, 255, 255, 0.65);
+  height: 50vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.hero__sitetitle {
-  
+@media (min-width: 480px) {
+  .hero__branding {
+    height: 100vh;
+  }
 }
 
-.hero__sitesubtitle {
+.hero__title {
+  font-family: 'Mystery Quest', 'Times New Roman', Times, serif;
+  font-size: 10vw;
+  font-weight: normal;
+  margin: 0;
+  text-align: center;
+}
+
+.hero__subtitle {
   font-family: 'Quicksand', sans-serif;
-  font-size: 3vw;
+  font-size: 5vw;
   letter-spacing: .15rem;
   font-variant-caps: all-small-caps;
-  margin: 0;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
+  text-align: center;
 }
 
 .featuredItems {
-  width: 100vw;
+  width: 100%;
+  height: 50%;
   display: grid;
-  grid-gap: 10px;
-  grid-template-columns: auto;
-  grid-template-rows: auto;
-  grid-auto-flow: column;
+  grid-template-columns: repeat( auto-fill, minmax(200px, 1fr));
+  grid-auto-rows: 125px 75px;
+  grid-auto-flow: dense;
+  position: absolute;
+  overflow: hidden;
 }
 
+.featuredItems__item {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
 
 .galleryItems {
   margin: 5% 10%;
@@ -167,19 +176,18 @@ body {
   align-items: flex-end;
 }
 .galleryItems__text {
-  background-color: #DE5800;
+  background-color: rgb(237, 134, 88);
   font-size: 1rem;
   font-family: Quicksand, sans-serif;
   padding: .25rem;
-  color: white;
-  position: relative;
-  top: 275px;
-  transition: top 1s cubic-bezier(.65,2.01,.81,.37);
+  color: rgb(34, 34, 34);
+  display: none;
   width: 100%;
+  text-align: center;
 }
 
 .galleryItems__textContainer:hover .galleryItems__text{
-  top: 0;
+  display: block;
 }
 
 .sectionList {
@@ -231,14 +239,25 @@ body {
 
 
 @media (min-width: 480px) {
-  .galleryItems__item:first-child {
+
+  .content {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  .featuredItems {
+    grid-auto-rows: 275px;
+    height: 100vh;
+  }
+
+  .featuredItems__item:first-child, .galleryItems__item:first-child {
     grid-area: 1 / 1 / span 2 / span 2;
   }
-  .galleryItems__item:nth-child(3n) {
+  .featuredItems__item:nth-child(3n), .galleryItems__item:nth-child(3n) {
     grid-column: span 2;
     background-position: top;
   }
   .galleryItems__item:first-child > .galleryItems__textContainer > .galleryItems__text {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
 }
