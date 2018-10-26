@@ -43,7 +43,7 @@ class App extends React.Component {
   handleScroll() {
     let breakpoint = document.querySelector('.hero')
     let menubar = document.querySelector('.menubar')
-    breakpoint.getBoundingClientRect().y < -600 ? menubar.style.display = 'flex' : menubar.style.display = 'none'
+    breakpoint.getBoundingClientRect().y < -600 ? menubar.className ='menubar menubar--show' : menubar.className = 'menubar';
   }
 
   
