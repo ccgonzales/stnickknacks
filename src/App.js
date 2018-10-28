@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import ShopButton from './ShopButton';
+import Menubar from './components/Menubar/Menubar';
 import Listings from './Listings';
-import Sections from './Sections';
+import Sections from './components/Sections/Sections';
 import FeaturedListings from './FeaturedList';
-import logo from './logo.svg';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStore, faSmile, faHeart, faChild } from '@fortawesome/free-solid-svg-icons';
@@ -46,19 +46,19 @@ class App extends React.Component {
     breakpoint.getBoundingClientRect().y < -600 ? menubar.className ='menubar menubar--show' : menubar.className = 'menubar';
   }
 
-  
-
   render() {
     return (
       <div className="App">
-
-<div className="menubar">
-  <h1 className="menubar__title">St. Nick Knacks</h1>
-  <ShopButton />
-</div>
+      {
+        this.state.loading === false &&
+        <Menubar list={this.state.sections}            
+        onChangeSection={this.handleChangeSection}
+        current_section={this.state.current_section} 
+        />
+      }
 
         <div className="hero">
-        <FeaturedListings />
+          <FeaturedListings />
           <div className="hero__branding">
             <h1 className="hero__title">St. Nick Knacks</h1>
             <p className="hero__subtitle">Handcrafted Primitive Gifts</p>

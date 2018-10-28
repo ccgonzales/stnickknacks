@@ -1,8 +1,7 @@
 import React from 'react';
 
 const Sections = (props) => {
-
-    let menuItemActive = props.current_section === 0 ? ' sectionList__link--active' : ''
+    let menuItemActive = props.current_section === 0 ? ' sectionList__link--active' : ''    
 
     return (
       <nav className="sectionList">

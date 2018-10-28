@@ -77,7 +77,7 @@ body {
   padding: 1rem;
   margin: 0;
   border-radius: 5px 5px 0 0;
-
+  text-align: center;
 }
 
 .content__header--welcome {
@@ -209,14 +209,14 @@ body {
 .sectionList__link {
   margin: 0 10px;
   font-family: Quicksand, serif;
-  font-size: 1.5rem;
+  font-size: 1rem;
   transition: font-size 1s cubic-bezier(.65,2.01,.81,.37);
   border-bottom: 3px solid black;
 }
 
 .sectionList__link--active {
   color: #067924;
-  font-size: 2rem;
+  font-size: 1.5rem;
   border-bottom: 3px solid #067924;
 }
 
