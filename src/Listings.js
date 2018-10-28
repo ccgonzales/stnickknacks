@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { faAlignCenter } from '@fortawesome/free-solid-svg-icons';
-
 
 const ListingItem = ({item, ...props}) => {
 
