@@ -36,7 +36,7 @@ class Listings extends Component {
 
   componentDidMount() {
     // move to .env file
-    const API_KEY = 'izjwjxzgox7aa4ci3dihot7t'
+    const API_KEY = `${process.env.REACT_APP_ETSY_API_KEY}`
 
     const limit = 100
     const includes = 'MainImage'
@@ -61,23 +61,35 @@ componentDidUpdate(prevProps) {
   `/v2/shops/stnickknacks/listings/active?api_key=${API_KEY}&limit=${limit}&includes=${includes}`
 
 
-   this.props.current_section !== prevProps.current_section ?
+   if (this.props.current_section !== prevProps.current_section) {
 
-  fetch(api_url)
-  .then(response => response.json())
-  .then(json => this.setState({listings: json.results, loading: false}))
-  .catch((error) => {
-    console.warn(error)
-    return null
+    fetch(api_url)
+    .then(response => response.json())
+    .then(json => this.setState({listings: json.results, loading: false}))
+    .then(this.scrollToGallery)
+    .catch((error) => {
+      console.warn(error)
+      return null
+    })
+
+   }
+
+}
+
+scrollToGallery() {
+  let scrollPosition = document.querySelector('#gallery').offsetTop - 90
+  window.scroll({ 
+    top: scrollPosition,
+    left: 0,
+    behavior: 'smooth' 
   })
-   : false
-
 }
 
   render() {
     return(
-      <div className="galleryItems">
+      <div className="galleryItems" id="gallery">
       {
+        this.state.loading === false &&
         this.state.listings.map((item, iterator) => <ListingItem item={item} index={iterator} key={item.listing_id} />)
       }
       </div>

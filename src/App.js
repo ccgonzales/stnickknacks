@@ -6,7 +6,7 @@ import Sections from './components/Sections/Sections';
 import FeaturedListings from './FeaturedList';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStore, faSmile, faHeart, faChild } from '@fortawesome/free-solid-svg-icons';
+import { faSmile, faHeart, faChild } from '@fortawesome/free-solid-svg-icons';
 
 class App extends Component {
   constructor(props) {
@@ -27,7 +27,7 @@ class App extends Component {
   componentDidMount() {
 
     // move to .env file
-    const API_KEY = 'izjwjxzgox7aa4ci3dihot7t'
+    const API_KEY = `${process.env.REACT_APP_ETSY_API_KEY}`
 
     fetch(`/v2/shops/stnickknacks/sections?api_key=${API_KEY}`)
     .then(response => response.json())
@@ -108,10 +108,6 @@ class App extends Component {
             return date.getFullYear();
           })(new Date())
         } St. Nick Knacks </p>
-        <p className="footer__text">St. Nick Knacks makes handcrafted primitive gives to match your primitive, country, or rustic decor.
-          Our <a href="https://stnickknacks.etsy.com">etsy store</a> has details on product dimensions and styles.
-        </p>
-
       </footer>
       </div>
     );

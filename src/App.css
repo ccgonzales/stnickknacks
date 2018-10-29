@@ -153,7 +153,7 @@ body {
 }
 
 .galleryItems {
-  margin: 5% 10%;
+  margin: 2rem;
   display: grid;
   grid-gap: 1em;
   grid-template-columns: repeat( auto-fill, minmax(200px, 1fr));
@@ -200,7 +200,6 @@ body {
 }
 
 .sectionList {
-  margin: 5% 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -216,7 +215,7 @@ body {
 
 .sectionList__link--active {
   color: #067924;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   border-bottom: 3px solid #067924;
 }
 

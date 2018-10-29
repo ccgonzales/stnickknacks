@@ -26,7 +26,7 @@ class Listings extends Component {
 
   componentDidMount() {
     // move to .env file
-    const API_KEY = 'izjwjxzgox7aa4ci3dihot7t'
+    const API_KEY = `${process.env.REACT_APP_ETSY_API_KEY}`
 
     const limit = 100
     const includes = 'MainImage'
