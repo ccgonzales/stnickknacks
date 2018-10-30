@@ -7,7 +7,7 @@ const ListingItem = ({item, ...props}) => {
       flexGrow: 2,
       backgroundPosition: 'center',
       backgroundSize: 'cover',
-      //animation: `fade-in ${props.index * .1 + '.4s'} ease-in`,
+      animation: `fade-in .5s ease-in ${props.index * .1 + 's'}`,
     }
 
     // strip ending url params to avoid displaying 'similar items' section from displaying on etsy.com
@@ -35,12 +35,11 @@ class Listings extends Component {
   }
 
   componentDidMount() {
-    // move to .env file
     const API_KEY = `${process.env.REACT_APP_ETSY_API_KEY}`
 
     const limit = 100
     const includes = 'MainImage'
-  fetch(`/v2/shops/stnickknacks/listings/active?api_key=${API_KEY}&limit=${limit}&includes=${includes}`)
+  fetch(`http://proxy.stnickknacks.com/http://openapi.etsy.com/v2/shops/stnickknacks/listings/active?api_key=${API_KEY}&limit=${limit}&includes=${includes}`)
   .then(response => response.json())
   .then(json => this.setState({listings: json.results, loading: false}))
   .catch((error) => {
@@ -57,8 +56,8 @@ componentDidUpdate(prevProps) {
   const includes = 'MainImage'
 
   let api_url = this.props.current_section !== prevProps.current_section && this.props.current_section !== 0 ?
-  `/v2/shops/stnickknacks/sections/${this.props.current_section}/listings/active?api_key=${API_KEY}&limit=${limit}&includes=${includes}` :
-  `/v2/shops/stnickknacks/listings/active?api_key=${API_KEY}&limit=${limit}&includes=${includes}`
+  `http://proxy.stnickknacks.com/http://openapi.etsy.com/v2/shops/stnickknacks/sections/${this.props.current_section}/listings/active?api_key=${API_KEY}&limit=${limit}&includes=${includes}` :
+  `http://proxy.stnickknacks.com/http://openapi.etsy.com/v2/shops/stnickknacks/listings/active?api_key=${API_KEY}&limit=${limit}&includes=${includes}`
 
 
    if (this.props.current_section !== prevProps.current_section) {

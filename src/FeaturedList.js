@@ -25,12 +25,11 @@ class Listings extends Component {
   }
 
   componentDidMount() {
-    // move to .env file
     const API_KEY = `${process.env.REACT_APP_ETSY_API_KEY}`
 
     const limit = 100
     const includes = 'MainImage'
-    fetch(`/v2/shops/stnickknacks/listings/active?api_key=${API_KEY}&limit=${limit}&includes=${includes}`)
+    fetch(`http://proxy.stnickknacks.com/http://openapi.etsy.com/v2/shops/stnickknacks/listings/active?api_key=${API_KEY}&limit=${limit}&includes=${includes}`)
       .then(response => response.json())
       .then(json => this.setState({listings: json.results, loading: false}))
       .catch((error) => {

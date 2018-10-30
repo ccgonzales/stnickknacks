@@ -5,7 +5,7 @@ const Sections = (props) => {
 
     return (
       <nav className="sectionList">
-      <div className={'sectionList__link' + menuItemActive} onClick={() => props.onChangeSection(0)}>All</div>
+      <div className={'sectionList__link' + menuItemActive} onClick={() => props.onChangeSection(0)}>All Items</div>
       {
         props.list.map(section => {
           menuItemActive = props.current_section === section.shop_section_id ? ' sectionList__link--active' : ''

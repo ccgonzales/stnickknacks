@@ -25,11 +25,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-
-    // move to .env file
     const API_KEY = `${process.env.REACT_APP_ETSY_API_KEY}`
 
-    fetch(`/v2/shops/stnickknacks/sections?api_key=${API_KEY}`)
+    fetch(`http://proxy.stnickknacks.com/http://openapi.etsy.com/v2/shops/stnickknacks/sections?api_key=${API_KEY}`)
     .then(response => response.json())
     .then(json => this.setState({sections: json.results, loading:false}))
     .catch((error) => {
@@ -41,9 +39,9 @@ class App extends Component {
   }
 
   handleScroll() {
-    let breakpoint = document.querySelector('.hero')
+    let breakpoint = document.querySelector('.hero .shopButton__container')
     let menubar = document.querySelector('.menubar')
-    breakpoint.getBoundingClientRect().y < -600 ? menubar.className ='menubar menubar--show' : menubar.className = 'menubar';
+    breakpoint.getBoundingClientRect().y < -36 ? menubar.className ='menubar menubar--show' : menubar.className = 'menubar';
   }
 
   render() {
