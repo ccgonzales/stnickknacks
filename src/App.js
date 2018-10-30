@@ -93,9 +93,6 @@ class App extends Component {
       {
         this.state.loading === false &&
         <div>
-          <Sections list={this.state.sections}
-            onChangeSection={this.handleChangeSection}
-            current_section={this.state.current_section} />
           <Listings current_section={this.state.current_section}/>
        </div>
 
