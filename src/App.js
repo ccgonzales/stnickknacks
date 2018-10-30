@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ShopButton from './ShopButton';
 import Menubar from './components/Menubar/Menubar';
 import Listings from './Listings';
-import Sections from './components/Sections/Sections';
 import FeaturedListings from './FeaturedList';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
