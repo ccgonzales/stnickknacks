@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import fetchJsonp from 'fetch-jsonp';
 
 
 const FeaturedListingItem = ({item}) => {
@@ -29,7 +30,7 @@ class Listings extends Component {
 
     const limit = 100
     const includes = 'MainImage'
-    fetch(`http://proxy.stnickknacks.com/http://openapi.etsy.com/v2/shops/stnickknacks/listings/active?api_key=${API_KEY}&limit=${limit}&includes=${includes}`)
+    fetchJsonp(`http://openapi.etsy.com/v2/shops/stnickknacks/listings/active.js?api_key=${API_KEY}&limit=${limit}&includes=${includes}`)
       .then(response => response.json())
       .then(json => this.setState({listings: json.results, loading: false}))
       .catch((error) => {

@@ -6,6 +6,7 @@ import FeaturedListings from './FeaturedList';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSmile, faHeart, faChild } from '@fortawesome/free-solid-svg-icons';
+import fetchJsonp from 'fetch-jsonp';
 
 class App extends Component {
   constructor(props) {
@@ -26,13 +27,22 @@ class App extends Component {
   componentDidMount() {
     const API_KEY = `${process.env.REACT_APP_ETSY_API_KEY}`
 
-    fetch(`http://proxy.stnickknacks.com/http://openapi.etsy.com/v2/shops/stnickknacks/sections?api_key=${API_KEY}`)
+    fetchJsonp(`http://openapi.etsy.com/v2/shops/stnickknacks/sections.js?api_key=${API_KEY}`)
     .then(response => response.json())
     .then(json => this.setState({sections: json.results, loading:false}))
     .catch((error) => {
       console.warn(error)
       return null
     })
+  
+
+    // fetch(`http://proxy.stnickknacks.com/http://openapi.etsy.com/v2/shops/stnickknacks/sections?api_key=${API_KEY}`)
+    // .then(response => response.json())
+    // .then(json => this.setState({sections: json.results, loading:false}))
+    // .catch((error) => {
+    //   console.warn(error)
+    //   return null
+    // })
 
     window.addEventListener('scroll', this.handleScroll)
   }
