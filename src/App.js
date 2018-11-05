@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import ShopButton from './ShopButton';
 import Menubar from './components/Menubar/Menubar';
-import Listings from './Listings';
 import FeaturedListings from './FeaturedList';
-import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSmile, faHeart, faChild } from '@fortawesome/free-solid-svg-icons';
-import fetchJsonp from 'fetch-jsonp';
+import Listings from './components/Listings/Listings';
+import ListingsData from './components/Data/ListingsData';
+
+import './App.css';
 
 class App extends Component {
   constructor(props) {
@@ -14,7 +15,6 @@ class App extends Component {
     this.state = {
       sections: [],
       current_section: 0,
-      loading: true,
     }
 
     this.handleChangeSection = this.handleChangeSection.bind(this)
@@ -24,45 +24,23 @@ class App extends Component {
     this.setState({current_section})
   }
 
-  componentDidMount() {
-    const API_KEY = `${process.env.REACT_APP_ETSY_API_KEY}`
-
-    fetchJsonp(`http://openapi.etsy.com/v2/shops/stnickknacks/sections.js?api_key=${API_KEY}`)
-    .then(response => response.json())
-    .then(json => this.setState({sections: json.results, loading:false}))
-    .catch((error) => {
-      console.warn(error)
-      return null
-    })
-  
-
-    // fetch(`http://proxy.stnickknacks.com/http://openapi.etsy.com/v2/shops/stnickknacks/sections?api_key=${API_KEY}`)
-    // .then(response => response.json())
-    // .then(json => this.setState({sections: json.results, loading:false}))
-    // .catch((error) => {
-    //   console.warn(error)
-    //   return null
-    // })
-
-    window.addEventListener('scroll', this.handleScroll)
-  }
+   componentDidMount() {
+     window.addEventListener('scroll', this.handleScroll)
+   }
 
   handleScroll() {
     let breakpoint = document.querySelector('.hero .shopButton__container')
     let menubar = document.querySelector('.menubar')
-    breakpoint.getBoundingClientRect().y < -36 ? menubar.className ='menubar menubar--show' : menubar.className = 'menubar';
+    breakpoint.getBoundingClientRect().y < -36 ? menubar.className ='menubar menubar--show' : menubar.className = 'menubar'
   }
 
   render() {
     return (
       <div className="App">
-      {
-        this.state.loading === false &&
-        <Menubar list={this.state.sections}            
-        onChangeSection={this.handleChangeSection}
-        current_section={this.state.current_section} 
-        />
-      }
+          <Menubar          
+            onChangeSection={this.handleChangeSection}
+            current_section={this.state.current_section} 
+          />
 
         <div className="hero">
           <FeaturedListings />
@@ -73,7 +51,8 @@ class App extends Component {
           </div>
         </div>
 
-        <main className="content">
+        <main>
+          <div className="content">
           <section className="content__container content__container--charlie">
             <h2 className="content__header content__header--welcome"><FontAwesomeIcon icon={faChild} /> hiya!</h2>
             <p className="content__text">We are a small home business, with 35 years of crafting and creating!</p>
@@ -97,15 +76,14 @@ class App extends Component {
           <p className="content__text">Christopher manages the pixels and paperwork.</p>
           <p className="content__text">Tom works menial tasks to pay for his cruising habit!</p>
           </section>        
-        </main>
+        </div>
 
-      {
-        this.state.loading === false &&
         <div>
-          <Listings current_section={this.state.current_section}/>
+          <ListingsData current_section={this.state.current_section} render={({listings}) => <Listings listings={listings}/> } />
        </div>
+       
+       </main>
 
-      }
       <footer className="footer">
         <p className="footer__text">&copy; {
           (function(date) {
@@ -114,8 +92,8 @@ class App extends Component {
         } St. Nick Knacks </p>
       </footer>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
