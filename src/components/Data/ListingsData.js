@@ -15,7 +15,7 @@ class ListingsData extends Component {
         const limit = 100
         const includes = 'MainImage'
 
-      fetchJsonp(`http://openapi.etsy.com/v2/shops/stnickknacks/listings/active.js?api_key=${API_KEY}&limit=${limit}&includes=${includes}`)
+      fetchJsonp(`https://openapi.etsy.com/v2/shops/stnickknacks/listings/active.js?api_key=${API_KEY}&limit=${limit}&includes=${includes}`)
       .then(response => response.json())
       .then(json => this.setState({listings: json.results, loading: false}))
       .catch((error) => {
@@ -30,8 +30,8 @@ class ListingsData extends Component {
         const includes = 'MainImage'
       
         let api_url = this.props.current_section !== prevProps.current_section && this.props.current_section !== 0 ?
-        `http://openapi.etsy.com/v2/shops/stnickknacks/sections/${this.props.current_section}/listings/active.js?api_key=${API_KEY}&limit=${limit}&includes=${includes}` :
-        `http://openapi.etsy.com/v2/shops/stnickknacks/listings/active.js?api_key=${API_KEY}&limit=${limit}&includes=${includes}`
+        `https://openapi.etsy.com/v2/shops/stnickknacks/sections/${this.props.current_section}/listings/active.js?api_key=${API_KEY}&limit=${limit}&includes=${includes}` :
+        `https://openapi.etsy.com/v2/shops/stnickknacks/listings/active.js?api_key=${API_KEY}&limit=${limit}&includes=${includes}`
       
       
          if (this.props.current_section !== prevProps.current_section) {

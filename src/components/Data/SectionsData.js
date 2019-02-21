@@ -20,7 +20,7 @@ class SectionsData extends Component {
         componentDidMount() {
           const API_KEY = `${process.env.REACT_APP_ETSY_API_KEY}`
       
-          fetchJsonp(`http://openapi.etsy.com/v2/shops/stnickknacks/sections.js?api_key=${API_KEY}`)
+          fetchJsonp(`https://openapi.etsy.com/v2/shops/stnickknacks/sections.js?api_key=${API_KEY}`)
           .then(response => response.json())
           .then(json => this.setState({sections: json.results, loading:false}))
           .catch((error) => {
